@@ -8,25 +8,79 @@
 </head>
 <body>
     <div class="body">
-        <h1 class="header">Welcome to Intersections Counter v1.0</h1>
+        <h1 class="header">Welcome to Intersections Counter v1.1</h1>
         <div class="flex-row">
-            <div class="left-side"></div>
+            <div class="left-side">
+                <h2>Custom Chords Form</h2>
+                <p>Enter hord values in format (s1, s2, e1, e2) with all start values of all points together, in ascending order, followed by all end values of points in ascending order</p>
+                <form action="/process" method="post" onsubmit="return validateChords()">
+                    <label for="custom-chords-input">Enter Chords:</label>
+                    <input type="text" id="custom-chords-input" name="custom_chords" placeholder="e.g. 1, 2, 3">
+                    <button class="button" type="submit">Submit Custom Chords</button>
+                </form>
+            </div>
+            <!-- JavaScript validation script -->
+            <script>
+                function validateChords() {
+                    // Get the input value and remove leading/trailing spaces
+                    var chordsInput = document.getElementById("custom-chords-input").value.trim();
+            
+                    // Check if the input is empty
+                    if (chordsInput === "") {
+                        alert("Chords input cannot be empty.");
+                        return false; // Prevent form submission
+                    }
+            
+                    // Split the input by commas
+                    var chordsArray = chordsInput.split(',');
+            
+                    // Remove leading/trailing spaces from each chord
+                    chordsArray = chordsArray.map(function(chord) {
+                        return chord.trim();
+                    });
+            
+                    // Check if there are more than three values
+                    if (chordsArray.length < 4) {
+                        alert("Invalid chord format. Please enter more than three values separated by commas. Example: 1,2,3,4");
+                        return false; // Prevent form submission
+                    }
+
+                    if (chordsArray.length % 2 !== 0) {
+                        alert("Invalid chord format. Please enter even ammount of values separated by commas. Example: 1,2,3,4");
+                        return false; // Prevent form submission
+                    }
+            
+                    // Check if all values are numeric
+                    for (var i = 0; i < chordsArray.length; i++) {
+                        if (isNaN(chordsArray[i])) {
+                            alert("Invalid chord format. Please enter numeric values separated by commas. Example: 1,2,3,4");
+                            return false; // Prevent form submission
+                        }
+                    }
+            
+                    // Additional checks or validation logic can be added here if needed
+            
+                    return true; // Allow form submission
+                }
+            </script>
+            
             <div class="right-side">
+                <h2>Preset Chords</h2>
                 <form action="/process" method="post">
-                    <input type="hidden" name="preset" value="[(0.78, 1.47, 1.77, 3.92, 4, 4.1, 7.2, 8, 9, 10), ('s1', 's2', 's3', 's4', 'e1', 'e2', 'e3', 'e4')]">
-                    <p><span>Preset #1:</span> [(0.78, 1.47, 1.77, 3.92, 4, 4.1, 7.2, 8, 9, 10), ('s1', 's2', 's3', 's4', 'e1', 'e2', 'e3', 'e4')]</p><button type="submit">Submit</button>
+                    <input type="hidden" name="chords" value="(0.78, 1.47, 1.77, 3.92, 4, 4.1, 7.2, 8, 9, 10)">
+                    <p><span>Chords #1:</span> [(0.78, 1.47, 1.77, 3.92, 4, 4.1, 7.2, 8, 9, 10), ('s1', 's2', 's3', 's4', 'e1', 'e2', 'e3', 'e4')]</p><button type="submit">Submit</button>
                 </form>
                 <form action="/process" method="post">
-                    <input type="hidden" name="preset" value="[(1, 3.2, 6, 3, 5, 9), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]">
-                    <p><span>Preset #2:</span> [(1, 3.2, 6, 3, 5, 9), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]</p><button type="submit">Submit</button>
+                    <input type="hidden" name="chords" value="(1, 3.2, 6, 3, 5, 9)">
+                    <p><span>Chords #2:</span> [(1, 3.2, 6, 3, 5, 9), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]</p><button type="submit">Submit</button>
                 </form>
                 <form action="/process" method="post">
-                    <input type="hidden" name="preset" value="[(1, 4, 5, 3, 6, 7), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]">
-                    <p><span>Preset #3:</span> [(1, 4, 5, 3, 6, 7), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]</p><button type="submit">Submit</button>
+                    <input type="hidden" name="chords" value="(1, 4, 5, 3, 6, 7)">
+                    <p><span>Chords #3:</span> [(1, 4, 5, 3, 6, 7), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]</p><button type="submit">Submit</button>
                 </form>
                 <form action="/process" method="post">
-                    <input type="hidden" name="preset" value="[(0.78, 1.47, 1.77, 3.92), ('s1', 's2', 'e1', 'e2')]">
-                    <p><span>Preset #4:</span> [(0.78, 1.47, 1.77, 3.92), ('s1', 's2', 'e1', 'e2')]</p><button type="submit">Submit</button>
+                    <input type="hidden" name="chords" value="(0.78, 1.47, 1.77, 3.92)">
+                    <p><span>Chords #4:</span> [(0.78, 1.47, 1.77, 3.92), ('s1', 's2', 'e1', 'e2')]</p><button type="submit">Submit</button>
                 </form>
             </div>
         </div>

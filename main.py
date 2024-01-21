@@ -1,10 +1,6 @@
 def count_intersections(chords):
     intersections = 0
-    length = int(len(chords[0]) / 2)
-    
-    
-    chords = chords[0]
-    # print(chords)
+    length = int(len(chords) / 2)
         
     p1 = 0
     p2 = 1
@@ -40,3 +36,16 @@ def count_intersections(chords):
 # except Exception as e:
 #     print(f"Error: {e}")
 #     result = None
+
+def process_chords(chords_str):
+    # Split the input string into a list of strings
+    chords_list = [chord.strip() for chord in chords_str.split(',')]
+
+    # Convert each string to an integer
+    chords = [int(chord) for chord in chords_list]
+    print(chords)
+
+    # Call the count_intersections function with the list of chords
+    result = count_intersections(chords)
+
+    return result

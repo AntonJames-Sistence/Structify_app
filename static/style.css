@@ -2,6 +2,10 @@ body {
     display: flex;
     flex-direction: column;
 }
+h2 {
+    text-align: center;
+}
+
 .body {
     width: 1000px;
     place-self: center;
@@ -40,4 +44,9 @@ p > span {
     justify-content: center;
     color: red;
     padding: 30px;
+    font-weight: 900;
+}
+
+.button {
+    
 }
