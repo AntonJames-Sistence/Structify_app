@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App</title>
+    <title>Structify App</title>
 </head>
 <body>
-    <h1>Hello, Flask!</h1>
+    <h1>Welcome to Intersections Counter v1.0</h1>
     <form action="/process" method="post">
         <button type="submit">Run Python Code</button>
     </form>
+
+    {% if result %}
+        <p>Result: {{ result }}</p>
+    {% endif %}
 </body>
 </html>
