@@ -24,7 +24,6 @@ def count_intersections(chords):
             p1 += 1
             p2 = p1+1
        
-        
     return intersections
     
     
