@@ -13,14 +13,27 @@
             <div class="left-side"></div>
             <div class="right-side">
                 <form action="/process" method="post">
-                    <button type="submit">Run Python Code</button>
+                    <input type="hidden" name="preset" value="[(0.78, 1.47, 1.77, 3.92, 4, 4.1, 7.2, 8, 9, 10), ('s1', 's2', 's3', 's4', 'e1', 'e2', 'e3', 'e4')]">
+                    <p><span>Preset #1:</span> [(0.78, 1.47, 1.77, 3.92, 4, 4.1, 7.2, 8, 9, 10), ('s1', 's2', 's3', 's4', 'e1', 'e2', 'e3', 'e4')]</p><button type="submit">Submit</button>
+                </form>
+                <form action="/process" method="post">
+                    <input type="hidden" name="preset" value="[(1, 3.2, 6, 3, 5, 9), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]">
+                    <p><span>Preset #2:</span> [(1, 3.2, 6, 3, 5, 9), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]</p><button type="submit">Submit</button>
+                </form>
+                <form action="/process" method="post">
+                    <input type="hidden" name="preset" value="[(1, 4, 5, 3, 6, 7), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]">
+                    <p><span>Preset #3:</span> [(1, 4, 5, 3, 6, 7), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]</p><button type="submit">Submit</button>
+                </form>
+                <form action="/process" method="post">
+                    <input type="hidden" name="preset" value="[(0.78, 1.47, 1.77, 3.92), ('s1', 's2', 'e1', 'e2')]">
+                    <p><span>Preset #4:</span> [(0.78, 1.47, 1.77, 3.92), ('s1', 's2', 'e1', 'e2')]</p><button type="submit">Submit</button>
                 </form>
             </div>
         </div>
 
 
         {% if result %}
-            <div>{{ result }}</div>
+            <div class="result">{{ result }}</div>
         {% endif %}
     </div>
 </body>

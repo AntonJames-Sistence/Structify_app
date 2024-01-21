@@ -1,6 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from ast import literal_eval
 import subprocess
 import sys
+from main import count_intersections
 
 app = Flask(__name__)
 
@@ -11,8 +13,15 @@ def index():
 @app.route('/process', methods=['POST'])
 def process():
     try:
-        # Run main.py using subprocess
-        result_message = subprocess.check_output([sys.executable, 'main.py'], universal_newlines=True)
+        # Get the selected preset as a string from the form
+        selected_chords_str = request.form['preset']
+
+        # Convert the string to a Python list
+        selected_chords = literal_eval(selected_chords_str)
+        # print(selected_chords)
+
+        # Run main.py logic with the selected chords
+        result_message = count_intersections(selected_chords)
     except subprocess.CalledProcessError as e:
         result_message = f"Error executing Python code: {e}"
 

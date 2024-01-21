@@ -3,7 +3,7 @@ body {
     flex-direction: column;
 }
 .body {
-    max-width: 1000px;
+    width: 1000px;
     place-self: center;
     padding: 10px;
     border: 1px solid black;
@@ -21,7 +21,23 @@ body {
 }
 
 .left-side, .right-side {
-    width: 50%;
+    width: 30%;
     padding: 10px;
     border: 1px solid black;
+    border-radius: 15px;
+}
+.right-side {
+    width: 70%;
+    margin-left: 10px;
+}
+
+p > span {
+    font-weight: 600;
+}
+
+.result {
+    display: flex;
+    justify-content: center;
+    color: red;
+    padding: 30px;
 }
