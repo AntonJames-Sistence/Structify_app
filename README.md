@@ -1,15 +1,15 @@
 # Intersections Counter App
 
-Welcome to the Intersections Counter v1.5 app! This simple web application allows you to count intersections in a set of chords. You can use preset chord sets or input your custom chords in the format (1, 2, 3, 4).
+Welcome to the Intersections Counter v1.5 app! This simple web application allows you to count intersections in a set of chords. You can use preset chord sets or input your custom chords in the format [(1, 4, 5, 3, 6, 7), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]. Please note that this version doesn't support error handling in custom field input. 
 
-![App Image](./app.png)
+![App Image](./app2.png)
 
 ## Table of Contents
 - [Big-O Runtime](#big-o-runtime)
 - [Installation and Running](#installation-and-running)
     - [Using Flask](#using-flask)
     - [Using Dockerfile](#using-dockerfile)
-- [new_main.py](#old_mainpy-file)
+- [new_main.py](#new_mainpy-file)
 
 ## Big-O Runtime
 The algorithm has a linear time complexity O(n), where n is the length of the 'chords' list. It iterates through the list once using a two-pointer strategy. The overall efficiency is linear, making it suitable for moderate-sized inputs.
@@ -17,17 +17,15 @@ The algorithm has a linear time complexity O(n), where n is the length of the 'c
 ```python
 def count_intersections(chords):
     intersections = 0
-    length = int(len(chords[0]) / 2)
-    
-    chords = chords[0]
+    length = len(chords)
         
     p1 = 0
     p2 = 1
     while p1 < length - 1:
-        start1 = chords[p1]
-        end1 = chords[length + p1]
-        start2 = chords[p2]
-        end2 = chords[length + p2]
+        start1 = chords[p1][0]
+        end1 = chords[p1][1]
+        start2 = chords[p2][0]
+        end2 = chords[p2][1]
         
         if start2 > start1 and start2 < end1 or end2 > start1 and end2 < end1:
             intersections += 1
@@ -37,8 +35,29 @@ def count_intersections(chords):
         else:
             p1 += 1
             p2 = p1+1
+       
+    return f"Number of intersections: {intersections}"
     
-    return intersections
+def get_chords(input):
+    chords = input[0]
+    values = input[1]
+    length = int(len(input[0]) / 2)
+    sorted_chords = []
+    
+    my_dict = {str(i): [] for i in range(1, length  + 1)}
+    
+    for i in range(0, len(values)):
+        num = values[i][1]
+        char = values[i][0]
+        if char == 's':
+            my_dict[num].insert(0, chords[i])
+        else:
+            my_dict[num].append(chords[i])
+            
+    for key, value in my_dict.items():
+        sorted_chords.append(value)
+    
+    return count_intersections(sorted_chords)
 ```
 
 ## Installation and Running
@@ -66,3 +85,67 @@ If you prefer to use the original solution without going through the installatio
 
 ```bash
 python3 new_main.py
+```
+
+```python
+def count_intersections(chords):
+    intersections = 0
+    length = len(chords)
+        
+    p1 = 0
+    p2 = 1
+    while p1 < length - 1:
+        start1 = chords[p1][0]
+        end1 = chords[p1][1]
+        start2 = chords[p2][0]
+        end2 = chords[p2][1]
+        
+        if start2 > start1 and start2 < end1 or end2 > start1 and end2 < end1:
+            intersections += 1
+        
+        if p2 < length - 1:
+            p2 += 1
+        else:
+            p1 += 1
+            p2 = p1+1
+    
+    return f"Number of intersections: {intersections}"
+    
+def get_chords(input):
+    chords = input[0]
+    values = input[1]
+    length = int(len(input[0]) / 2)
+    result = []
+    
+    my_dict = {str(i): [] for i in range(1, length  + 1)}
+    
+    for i in range(0, len(values)):
+        num = values[i][1]
+        char = values[i][0]
+        if char == 's':
+            my_dict[num].insert(0, chords[i])
+        else:
+            my_dict[num].append(chords[i])
+            
+    for key, value in my_dict.items():
+        result.append(value)
+    
+    # print(result)
+    
+    return result
+    
+# chords = [(0.78, 1.47, 1.77, 3.92, 4, 4.1, 7.2, 8, 9, 10), ('s1', 'e1', 's2', 'e2', 's3', 's4', 'e3', 'e4', 's5', 'e5')]
+# chords = [(1, 3.2, 6, 3, 5, 9), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]
+# chords = [(1, 4, 5, 3, 6, 7), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]
+# chords = [(0.78, 1.47, 1.77, 3.92), ('s1', 's2', 'e1', 'e2')]
+chords = [(0.9, 1.3, 1.70, 2.92), ('s1', 'e1', 's2', 'e2')]
+try:
+    # Calculate the result
+    sort_chords = get_chords(chords)
+    result = count_intersections(sort_chords)
+    print(result)
+
+except Exception as e:
+    print(f"Error: {e}")
+    result = None
+```
