@@ -3,7 +3,7 @@ from ast import literal_eval
 import subprocess
 import sys
 from main import count_intersections
-from main import process_chords
+from main import get_chords
 
 app = Flask(__name__)
 
@@ -14,21 +14,14 @@ def index():
 @app.route('/process', methods=['POST'])
 def process():
     try:
-        if 'chords' in request.form:
-            # Get the selected preset as a string from the form
-            selected_chords_str = request.form['chords']
+        # Get the selected preset as a string from the form
+        selected_chords_str = request.form['chords']
 
-            # Convert the string to a Python list
-            selected_chords = literal_eval(selected_chords_str)
-            # print(selected_chords)
+        # Convert the string to a Python list
+        chords = literal_eval(selected_chords_str)
 
-            # Run main.py logic with the selected chords
-            result_message = count_intersections(selected_chords)
-        else:
-            custom_chords_str = request.form['custom_chords']
-
-            # Process custom chords
-            result_message = process_chords(custom_chords_str)
+        # Run main.py logic with the selected chords
+        result_message = get_chords(chords)
             
     except subprocess.CalledProcessError as e:
         result_message = f"Error executing Python code: {e}"

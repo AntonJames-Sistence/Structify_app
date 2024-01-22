@@ -9,7 +9,7 @@ Welcome to the Intersections Counter v1.3 app! This simple web application allow
 - [Installation and Running](#installation-and-running)
     - [Using Flask](#using-flask)
     - [Using Dockerfile](#using-dockerfile)
-- [old_main.py](#old_mainpy-file)
+- [new_main.py](#old_mainpy-file)
 
 ## Big-O Runtime
 The algorithm has a linear time complexity O(n), where n is the length of the 'chords' list. It iterates through the list once using a two-pointer strategy. The overall efficiency is linear, making it suitable for moderate-sized inputs.
@@ -60,9 +60,9 @@ def count_intersections(chords):
     docker run -p 5001:5001 intersections-counter
 3. Access the application in your browser at http://localhost:5001
 
-## old_main.py file
+## new_main.py file
 
 If you prefer to use the original solution without going through the installation process, you can run the following command:
 
 ```bash
-python3 old_main.py
+python3 new_main.py
