@@ -1,6 +1,6 @@
 # Intersections Counter App
 
-Welcome to the Intersections Counter v1.3 app! This simple web application allows you to count intersections in a set of chords. You can use preset chord sets or input your custom chords in the format (1, 2, 3, 4).
+Welcome to the Intersections Counter v1.5 app! This simple web application allows you to count intersections in a set of chords. You can use preset chord sets or input your custom chords in the format (1, 2, 3, 4).
 
 ![App Image](./app.png)
 

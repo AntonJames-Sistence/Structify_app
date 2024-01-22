@@ -9,14 +9,16 @@
 </head>
 <body>
     <div class="body">
-        <h1 class="header">Welcome to Intersections Counter v1.3</h1>
+        <h1 class="header">Welcome to Intersections Counter v1.5</h1>
         <div class="flex-row">
             <div class="left-side">
                 <h2>Custom Chords Form</h2>
-                <p>Enter hord values in format <p class="bold">(s1, s2, s3, e1, e2, e3)</p> with all start values of all points together, in ascending order, followed by all end values of points in ascending order</p>
+                <p>Enter custom input in the following format: <span class="bold">[(1, 4, 5, 3, 6, 7), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]</span></p>
+                <p>Please take into consideration that this version does not have any error handling, so follow the format described above.</p>
+
                 <form action="/process" method="post">
                     <label class="bold" for="custom-chords-input">Enter chords here:</label>
-                    <input class="space" type="text" id="custom-chords-input" name="custom_chords" placeholder="e.g. 1, 2, 3">
+                    <input class="space" type="text" id="custom-chords-input" name="chords" placeholder="e.g. [(1, 4, 5, 3, 6, 7), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]">
                     <button class="button" type="submit">Submit Custom Chords</button>
                 </form>
             </div>
@@ -28,8 +30,8 @@
                     <p><span>Chords #1:</span> [(0.78, 1.47, 1.77, 3.92, 4, 4.1, 7.2, 8, 9, 10), ('s1', 'e1', 's2', 'e2', 's3', 's4', 'e3', 'e4', 's5', 'e5')]</p><button class="button" type="submit">Submit</button>
                 </form>
                 <form action="/process" method="post">
-                    <input type="hidden" name="chords" value="[(0.9, 1.3, 1.70, 2.92), ('s1', 'e1', 's2', 'e2')]">
-                    <p><span>Chords #2:</span> [(0.9, 1.3, 1.70, 2.92), ('s1', 'e1', 's2', 'e2')]</p><button class="button" type="submit">Submit</button>
+                    <input type="hidden" name="chords" value="[(0.78, 1.47, 1.77, 3.92, 4, 4.1, 7.2, 8, 9, 10), ('s1', 's2', 's3', 's4', 's5', 'e1', 'e2', 'e3', 'e4', 'e5')]">
+                    <p><span>Chords #2:</span> [(0.78, 1.47, 1.77, 3.92, 4, 4.1, 7.2, 8, 9, 10), ('s1', 's2', 's3', 's4', 's5', 'e1', 'e2', 'e3', 'e4', 'e5')]</p><button class="button" type="submit">Submit</button>
                 </form>
                 <form action="/process" method="post">
                     <input type="hidden" name="chords" value="[(1, 4, 5, 3, 6, 7), ('s1', 's2', 's3', 'e1', 'e2', 'e3')]">
